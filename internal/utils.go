@@ -33,13 +33,16 @@ func ReadData() []byte {
 	data, _ := os.Stdin.Stat()
 	if (data.Mode() & os.ModeCharDevice) == 0 {
 		log.Debug("data is from pipe")
+		if flag.NArg() != 1 {
+			log.Fatal("need 1 position arg")
+		}
 		bytes, _ := ioutil.ReadAll(os.Stdin)
 		return bytes
 	}
 	log.Debug("data is not from pipe, continue")
 
 	if flag.NArg() != 2 {
-		log.Fatal("2 args needed")
+		log.Fatal("need 2 postition args")
 	}
 	data2, err := ioutil.ReadFile(flag.Arg(1))
 	if err != nil {
