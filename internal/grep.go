@@ -26,6 +26,7 @@ func grep(pattern, source []byte) {
 	}
 }
 
+// with regexp support
 func grepE(pattern, source []byte) {
 	pat := regexp.MustCompile(string(pattern))
 	for _, line := range bytes.Split(source, []byte("\n")) {
